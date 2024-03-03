@@ -15,6 +15,6 @@ curl -s https://thesandybridge.github.io/scripts/install.sh | bash -s math-rs ma
 # Basic Usage
 
 ```shell
-$ math-rs 10 x 10"
+$ math-rs 10 x 10
 10 * 10 = 100
 ```
