@@ -1,5 +1,6 @@
 use clap::Parser;
 use eval::eval;
+use std::time::Instant;
 
 /// Performs mathematical calculations and unit conversions
 #[derive(Parser, Debug)]
@@ -20,6 +21,7 @@ struct Args {
 
 fn main() {
     let args = Args::parse();
+    let start = Instant::now();
 
     if let Some(unit_conversion) = args.unit_conversion {
         // Perform unit conversion
@@ -34,7 +36,12 @@ fn main() {
         match eval(&modified_expression) {
             Ok(result) => {
                 if args.verbose {
-                    println!("{} = {} : 0.5ns", modified_expression, result);
+                    println!(
+                        "{} = {} : {}s",
+                        modified_expression,
+                        result,
+                        start.elapsed().as_secs_f64()
+                    );
                 } else {
                     println!("{} = {}", modified_expression, result);
                 }
